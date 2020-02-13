@@ -1,0 +1,18 @@
+---
+title: "Movie Review"
+author: "Thomas Nguyen"
+date: "2/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+source("exercise.R")
+```
+
+## `r headline`
+> `r short_summary`
+
+```{r link, echo=FALSE}
+link_markdown <- paste0("[", link, "]", "(", link, ")")
+```
+Link to the full review: `r link_markdown`
