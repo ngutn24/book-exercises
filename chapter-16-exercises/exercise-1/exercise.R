@@ -104,13 +104,13 @@ ggplot(data = diamonds_sample) +
 # standard error of the price.
 clarity_summary <- diamonds %>% 
   group_by(clarity) %>% 
-  summarize(average_price = mean(price), standard_error = sd(price) / sqrt(sum(price)))
+  summarize(average_price = mean(price, na.rm = TRUE), standard_error = sd(price, na.rm = TRUE) / sqrt(sum(price, na.rm = TRUE)))
 
 # Then draw the plot. The error bars should stretch from the mean-error to the 
 # mean+error.
-x_scale <- scale_x_continuous(limits = range(clarity_summary$average_price + clarity_summary$standard_error))
+y_scale <- scale_y_discrete(limits = range(clarity_summary$average_price + clarity_summary$standard_error))
 ggplot(data = clarity_summary) +
   geom_col(mapping = aes(x = clarity, y = average_price)) +
   geom_col(mapping = aes(x = clarity, y = standard_error), color = "red") +
-  x_scale
+  y_scale
 
